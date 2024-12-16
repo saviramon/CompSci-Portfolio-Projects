@@ -1,0 +1,91 @@
+### CREATE five documents.
+POST http://localhost:3000/games HTTP/1.1
+content-type: application/json
+
+{
+    "title": "The Last of Us Part II",
+    "releaseYear": 2020, 
+    "trophyName": "Self Help",
+    "acquireDate": "2020-06-25"
+}
+
+
+### CREATE 2
+POST http://localhost:3000/games HTTP/1.1
+content-type: application/json
+
+{
+    "title": "God of War",
+    "releaseYear": 2018, 
+    "trophyName": "The Truth",
+    "acquireDate": "2018-05-21"
+}
+
+
+### CREATE 3
+POST http://localhost:3000/games HTTP/1.1
+content-type: application/json
+
+{
+    "title": "Horizon Zero Dawn",
+    "releaseYear": 2017,
+    "trophyName": "All allies joined",
+    "acquireDate": "2017-07-25"
+}
+
+
+### CREATE 4
+POST http://localhost:3000/games HTTP/1.1
+content-type: application/json
+
+{
+    "title": "Spider-Man",
+    "releaseYear": 2018,
+    "trophyName": "Be Greater",
+    "acquireDate": "2018-09-25"
+}
+
+
+### CREATE 5
+POST http://localhost:3000/games HTTP/1.1
+content-type: application/json
+
+{
+    "title": "Red Dead Redemption 2",
+    "releaseYear": 2018,
+    "trophyName": "Home Comforts",
+    "acquireDate": "2019-11-5"
+}
+
+
+
+### RETRIEVE all documents.
+GET http://localhost:3000/games HTTP/1.1
+
+
+
+### RETRIEVE a document by its ID.
+### Replace the following ID with one that exists in the collection.
+GET http://localhost:3000/games/674012cfe1a0afb18b70274c HTTP/1.1
+
+
+### UPDATE one document's trophy,and aquireDate by ID.
+### Replace the ID in the following request with one that exists
+### and update the trophy and acquireDate:
+PUT http://localhost:3000/games/674012c9e1a0afb18b702746 HTTP/1.1
+content-type: application/json
+
+{
+    "title": "The Last of Us Part II",
+    "releaseYear": 2020,
+    "trophyName": "Tinkerer",
+    "acquireDate": "2020-10-15"
+}
+### DELETE by ID (responds with nothing if successful):
+DELETE http://localhost:3000/games/67401343e1a0afb18b702755 HTTP/1.1
+
+
+
+### RETRIEVE all documents (responds with 4 or the original 5):
+GET http://localhost:3000/games HTTP/1.1
+
