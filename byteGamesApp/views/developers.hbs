@@ -1,0 +1,100 @@
+{{!-- Citation for node starter project
+Adapted from CS340 node-starter-app
+URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
+Date Retrieved: Feb 26, 2025 --}}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>BYTE GAMES | Developers</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </head>
+    <body>
+        <header>
+            <h1>BYTE GAMES</h1>
+        </header>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/games">Games</a>
+            <a href="/developers">Developers</a>
+            <a href="/customers">Customers</a> 
+            <a href="/orders">Orders</a>
+            <a href="/ordersgames">OrdersGames</a>
+        </nav>
+        <main>
+            <h2>Browse Developers</h2>
+            <section>
+                <h3>Refresh page to see updates or deletions.</h3>
+                <article>
+           {{!-- Create a table --}}
+                    <table id="developers-table"> 
+
+                        {{!-- Header section --}}
+                        <thead>
+
+                            {{!-- For just the first row, we print each key of the row object as a header cell so we
+                            know what each column means when the page renders --}}
+                            <tr>
+                                {{#each data.[0]}}
+                                <th>
+                                    {{@key}}
+                                </th>
+                                {{/each}}
+                                <th>Delete</th>
+                            </tr>
+                        </thead>
+
+                        {{!-- Body section --}}
+                        <tbody>
+
+                            {{!-- For each row, print the developerID, name in order --}}
+                            {{#each data}}
+                            <tr>
+                                <td>{{this.developerID}}</td>
+                                <td>{{this.name}}</td>
+                                <td><button onclick="deleteDeveloper({{this.developerID}})">Delete</button></td>
+                            </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+                    <script src="./js/delete_developer.js"></script>
+                </article>
+                <article>
+                    <h3>Add a Developer</h3>
+                    <form id="add-developer-form-ajax">
+                        <fieldset>
+                            <label for="input-name">Developer Name: </label>
+                            <input type="text" name="input-name" id="input-name" placeholder="Name of Developer" required/>
+                        </fieldset>
+                        <input type="submit" value="Add Developer">
+                    </form>        
+                    <script src="./js/add_developer.js"></script>
+                </article>
+            <article>
+                <h3>Update a Developer</h3>
+                <form id="update-developer-form-ajax">
+                    <fieldset>                    
+                    <label for="update-developerID">Developer ID: </label>
+                     <select name="update-developerID" id="mySelect">
+                        <option>Select Developer ID</option>
+                        {{#each data}}
+                        <option value="{{this.developerID}}">(ID: {{this.developerID}}, {{this.name}})</option>
+                        {{/each}}
+                    </select>
+                    <label for="update-name">Developer Name: </label>
+                    <input type="text" name="update-name" id="update-name" placeholder="Name of Developer" required></fieldset>
+
+                    <input type="submit">
+                </form>
+                <script src="./js/update_developer.js"></script>
+            </article>
+        </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 X'avier Tejada | Christian Duval</p>
+        </footer>
+    </body>
+</html>

@@ -1,0 +1,175 @@
+{{!-- Citation for node starter project
+Adapted from CS340 node-starter-app
+URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
+Date Retrieved: Feb 26, 2025 --}}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>BYTE GAMES | Games</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </head>
+    <body>
+        <header>
+            <h1>BYTE GAMES</h1>
+        </header>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/games">Games</a>
+            <a href="/developers">Developers</a>
+            <a href="/customers">Customers</a> 
+            <a href="/orders">Orders</a>
+            <a href="/ordersgames">OrdersGames</a>
+        </nav>
+        <main>
+            <section>
+                <h2>Browse Game Selection</h2>
+                <h3>Refresh in order to see updates and deletions.</h3>
+                <article>
+            {{!-- Create a table --}}
+                    <table id="games-table"> 
+
+                        {{!-- Header section --}}
+                        <thead>
+
+                            {{!-- For just the first row, we print each key of the row object as a header cell so we
+                            know what each column means when the page renders --}}
+                            <tr>
+                                {{#each games.[0]}}
+                                <th>
+                                    {{@key}}
+                                </th>
+                                {{/each}}
+                            </tr>
+                        </thead>
+
+                        {{!-- Body section --}}
+                        <tbody>
+
+                            {{!-- For each row, print the gameID, title, developerID, genre and releaseDate, price, platform, game_condition, quantityInStock in order --}}
+                            {{#each games}}
+                            <tr data-value={{this.gameID}}>
+                                <td>{{this.gameID}}</td>
+                                <td>{{this.title}}</td>
+                                <td>{{this.developerID}}</td>
+                                <td>{{this.genre}}</td>
+                                <td>{{this.releaseDate}}</td>
+                                <td>{{this.price}}</td>
+                                <td>{{this.platform}}</td>
+                                <td>{{this.game_condition}}</td>
+                                <td>{{this.quantityInStock}}</td>
+                            </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+                </article>
+                <article>
+                    <h2>Add a Game</h2>
+                    <form id="add-game-form-ajax">
+                        <fieldset>
+                            <label for="input-title">Title: </label>
+                            <input type="text" name="input-title" id="input-title" placeholder="Enter Game Title"/> Developer:
+                            <select name="input-developer" id="input-developer">
+                                <option value="">Select developer</option>
+                                {{#each developers}}
+                                    <option value="{{this.developerID}}">
+                                        {{this.name}} (ID: {{this.developerID}})
+                                    </option>
+                                {{/each}}
+                            </select>
+                            <label for="input-genre">Genre: </label>
+                                <select name="input-genre" id="input-genre">
+                                    <option value="action">Action</option>
+                                    <option value="platformer">Platformer</option>
+                                    <option value="rpg">RPG</option>
+                                    <option value="adventure">Adventure</option>
+                                </select>
+                            <label for="input-releasedate">Release Date: </label>
+                            <input type="date" name="input-releasedate" id="input-releasedate"/>
+                            <label for="input-price" >Price: </label>
+                            <input type="text" name="input-price" id="input-price" placeholder="00.00"/>
+                            <label for="input-platform" >Platform: </label>
+                            <input type="text" name="input-platform" id="input-platform" placeholder="Name of Platform"/>
+                            <label for="input-condition">Condition: </label>
+                                <select name="input-condition" id="input-condition" required>
+                                    <option value="0">New (0)</option>
+                                    <option value="1">Used (1)</option>
+                                </select>
+                            <label for="input-instock">Quantity in Stock: </label>
+                            <input type="text" name="input-instock" id="input-instock" placeholder="0"/>
+                        </fieldset>
+                        <input type="submit" value="Add Game">
+                    </form>
+                </article>
+                <article>
+                    <h2>Update a Game</h2>
+                    <form id="update-game-form-ajax">
+                        <fieldset>
+                            <label for="update-id">Game ID: </label>
+                            <select name="update-id" id="update-id">
+                                <option>Select Game ID</option>
+                                {{#each games}}
+                                <option value="{{this.gameID}}">(ID: {{this.gameID}}) {{this.title}}</option>
+                                {{/each}}
+                            </select>
+                            <label for="update-title" value="'Enter Title">Title: </label>
+                            <input type="text" name="update-title" id="update-title" placeholder="Enter Game Title" required/>
+                            <label for="update-developer">Developer: </label>
+                            <select name="update-developer" id="update-developer" required>
+                                <option value="">Select developer</option>
+                                {{#each developers}}
+                                    <option value="{{this.developerID}}">
+                                         (ID: {{this.developerID}} {{this.name}})
+                                    </option>
+                                {{/each}}
+                            </select>
+                            <label for="update-genre">Genre: </label>
+                                <select name="update-genre" id="update-genre" required>
+                                    <option value="Action">Action</option>
+                                    <option value="Platformer">Platformer</option>
+                                    <option value="RPG">RPG</option>
+                                    <option value="Adventure">Adventure</option>
+                                </select>
+                            <label for="update-releasedate">Release Date: </label>
+                            <input type="date" name="update-releasedate" id="update-releasedate" required/>
+                            <label for="update-price">Price: </label>
+                            <input type="text" name="update-price" id="update-price" placeholder="00.00"/>
+                            <label for="update-platform">Platform: </label>
+                            <input type="text" name="update-platform" id="update-platform" placeholder="Name of Platform"/>
+                            <label for="update-condition">Condition: </label>
+                                <select name="update-condition" id="update-condition" required>
+                                    <option value="0">New</option>
+                                    <option value="1">Used</option>
+                                </select>
+                            <label for="update-instock">Quantity in Stock: </label>
+                            <input type="text" name="update-instock" id="update-instock" placeholder="0" required/>
+                        </fieldset>
+                        <input type="submit" value="Update Game">
+                    </form>
+                </article>
+                <article>
+                    <h2>Remove a Game</h2>
+                    <form id="delete-game-form-ajax">
+                            <label for="delete-id">Game ID: </label>
+                            <select name="delete-id" id="delete-id">
+                                <option>Select Game ID</option>
+                                {{#each games}}
+                                <option value="{{this.gameID}}">(ID: {{this.gameID}}) {{this.title}}</option>
+                                {{/each}}
+                            </select>                        
+                            <input type="submit" value="Delete Game">
+                    </form>
+                </article>
+            </section>
+        </main>
+        {{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
+        <script src="./js/add_game.js"></script>
+        <script src="./js/update_game.js"></script>
+        <script src="./js/delete_game.js"></script>
+        <footer>
+            <p>&copy; 2025 X'avier Tejada | Christian Duval</p>
+        </footer>   
+    </body>
+</html>

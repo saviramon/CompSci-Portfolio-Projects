@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Quicksand&display=swap');
+
+:root {
+    font-family: "Newsreader", serif;
+    line-height: 1.5;
+    font-weight: 400;
+    color-scheme: light dark;
+    color: rgba(12, 12, 12, 0.87);
+    background-color: darkgrey;
+  }
+
+header {
+    padding: 1%;
+    background-color: maroon;
+    margin-bottom: 1%;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+main {
+    background-color: rgb(182, 181, 181);
+}
+
+nav {
+    text-align: center;
+    border-top: 1% solid;
+    margin-bottom: 1%;
+}
+
+nav a {
+    border-radius: 10px;
+    padding: 1%;
+    border: 1px solid black;
+    text-decoration: none; 
+    border-bottom: solid 3px black;
+    color: black;
+}
+a {
+    color: black;
+    text-decoration: none;
+}
+
+a:hover {
+    color: maroon;
+}
+
+
+nav a:hover {
+    background-color: grey;
+}
+
+#home-nav {
+    text-align: left;
+    margin-left: 2%;
+    color: black;
+}
+
+main {
+    padding: 2%;
+}
+
+form {
+    padding: 1%;
+    flex-wrap: wrap;
+}
+
+fieldset {
+    padding: 1%;
+}
+
+input::placeholder {
+    color: white;
+}
+
+input[type="submit"] {
+    border: none;
+    background-color: maroon;
+    color: white;
+    margin-top: 1%;
+    padding: 5px;
+    border-radius: 55%;
+}
+
+input[type="submit"]:hover {
+    cursor: pointer;
+}
+
+label {
+    padding: 10px;
+    display: inline-block;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    text-align: center;
+    border: 1px solid black;
+    width: auto;
+}
+
+tr:nth-child(even) {
+    background-color: lightgray;
+}
+
+tr:nth-child(odd) {
+    background-color: grey;
+}
+
+th {
+    background-color: maroon;
+}

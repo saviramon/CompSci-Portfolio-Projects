@@ -1,0 +1,114 @@
+{{!-- Citation for node starter project
+Adapted from CS340 node-starter-app
+URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
+Date Retrieved: Feb 26, 2025 --}}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>BYTE GAMES | Customers</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+    </head>
+    <body>
+        <header>
+            <h1>BYTE GAMES</h1>
+        </header>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/games">Games</a>
+            <a href="/developers">Developers</a>
+            <a href="/customers">Customers</a> 
+            <a href="/orders">Orders</a>
+            <a href="/ordersgames">OrdersGames</a>
+        </nav>
+        <main>
+            <h2>Browse Customers</h2>
+            <section>
+                <h3>Refresh page to see updates or deletions.</h3>
+                <article>
+           {{!-- Create a table --}}
+                    <table id="customers-table"> 
+
+                        {{!-- Header section --}}
+                        <thead>
+
+                            {{!-- For just the first row, we print each key of the row object as a header cell so we
+                            know what each column means when the page renders --}}
+                            <tr>
+                                {{#each data.[0]}}
+                                <th>
+                                    {{@key}}
+                                </th>
+                                {{/each}}
+                                <th>Delete</th>
+                            </tr>
+                        </thead>
+
+                        {{!-- Body section --}}
+                        <tbody>
+
+                            {{#each data}}
+                            <tr>
+                                <td>{{this.customerID}}</td>
+                                <td>{{this.firstName}}</td>
+                                <td>{{this.lastName}}</td>
+                                <td>{{this.email}}</td>
+                                <td>{{this.phoneNumber}}</td>
+                                <td><button onclick="deleteCustomer({{this.customerID}})">Delete</button></td>
+                            </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+                    <script src="./js/delete_customer.js"></script>
+                </article>
+                <article>
+                    <h2>Add a Customer</h2>
+                    <form id="add-customer-form-ajax">
+                        <fieldset>
+                            <label for="input-fname">First Name: </label>
+                            <input type="text" name="input-fname" id="input-fname" placeholder="Customer First Name" required/>
+                            <label for="input-lname">Last Name: </label>
+                            <input type="text" name="input-lname" id="input-lname" placeholder="Customer Last Name" required/>
+                            <label for="input-email">Email: </label>
+                            <input type="text" name="input-email" id="input-email" placeholder="Customer Email Address"/>
+                            <label for="input-phone">Phone Number: </label>
+                            <input type="text" name="input-phone" id="input-phone" placeholder="Customer Phone Number"/>
+                        </fieldset>
+                        <input type="submit" value="Add Customer">
+                    </form>        
+                    <script src="./js/add_customer.js"></script>
+                </article>
+            <article>
+                <h2>Update a Customer</h2>
+                <form id="update-customer-form-ajax">
+                    <fieldset>
+                        <label for="update-customerID">Customer ID: </label>
+                        <select name="update-customerID" id="customerSelect">
+                            <option>Select Customer ID</option>
+                            {{#each data}}
+                            <option value="{{this.customerID}}">(ID: {{this.customerID}}) {{this.firstName}} {{this.lastName}}</option>
+                            {{/each}}
+                        </select>
+                        <label for="update-fname">First Name: </label>
+                        <input type="text" name="update-fname" id="update-fname" placeholder="Customer First Name" required>
+                        <label for="update-lname">Last Name: </label>
+                        <input type="text" name="update-lname" id="update-lname" placeholder="Customer Last Name" required>
+                        <label for="update-email">Email: </label>
+                        <input type="text" name="update-email" id="update-email" placeholder="Customer Email">
+                        <label for="update-phone">Phone Number: </label>
+                        <input type="text" name="update-phone" id="update-phone" placeholder="Customer Phone Number">
+                    </fieldset>
+                    <input type="submit" value="Update Customer">
+                </form>
+                <script src="./js/update_customer.js"></script>
+            </article>
+        </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 X'avier Tejada | Christian Duval</p>
+        </footer>
+    </body>
+</html>
